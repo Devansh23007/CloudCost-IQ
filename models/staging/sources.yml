@@ -1,0 +1,33 @@
+
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    description: "Validated cloud billing data loaded by Python."
+    tables:
+      - name: cloud_billing
+        description: "Raw cloud billing records."
+        columns:
+          - name: record_id
+            description: "Unique identifier for each billing record."
+            data_tests:
+              - unique
+              - not_null
+
+          - name: billing_date
+            data_tests:
+              - not_null
+
+          - name: cloud_provider
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ['AWS', 'Azure', 'GCP']
+
+          - name: currency
+            data_tests:
+              - accepted_values:
+                  arguments:
+                    values: ['USD']

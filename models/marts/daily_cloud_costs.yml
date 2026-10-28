@@ -1,0 +1,37 @@
+
+version: 2
+
+models:
+  - name: daily_cloud_costs
+    description: >
+      Daily cloud spending aggregated by provider,
+      team, service, and currency.
+
+    columns:
+      - name: billing_date
+        data_tests:
+          - not_null
+
+      - name: cloud_provider
+        data_tests:
+          - not_null
+
+      - name: team
+        data_tests:
+          - not_null
+
+      - name: service
+        data_tests:
+          - not_null
+
+      - name: currency
+        data_tests:
+          - not_null
+
+      - name: billing_record_count
+        data_tests:
+          - not_null
+
+      - name: net_cost
+        data_tests:
+          - not_null

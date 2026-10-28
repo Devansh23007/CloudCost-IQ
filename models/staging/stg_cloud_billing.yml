@@ -1,0 +1,39 @@
+
+version: 2
+
+models:
+  - name: stg_cloud_billing
+    description: >
+      Cleaned billing records with standardized fields
+      and calculated net cost.
+
+    columns:
+      - name: record_id
+        description: "Unique billing record identifier."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: billing_date
+        data_tests:
+          - not_null
+
+      - name: cloud_provider
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['AWS', 'Azure', 'GCP']
+
+      - name: team
+        data_tests:
+          - not_null
+
+      - name: gross_cost
+        data_tests:
+          - not_null
+
+      - name: net_cost
+        description: "Gross cost after discounts and credits."
+        data_tests:
+          - not_null
