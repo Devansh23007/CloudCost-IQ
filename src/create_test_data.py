@@ -42,6 +42,11 @@ invalid_currency = test_df.iloc[[4]].copy()
 invalid_currency["record_id"] = "TEST-INVALID-CURRENCY"
 invalid_currency["currency"] = "XYZ"
 
+# Problem 6: negative gross cost.
+negative_cost = test_df.iloc[[5]].copy()
+negative_cost["record_id"] = "TEST-NEGATIVE-COST"
+negative_cost["gross_cost"] = -10
+
 test_df = pd.concat(
     [
         test_df,
@@ -50,10 +55,10 @@ test_df = pd.concat(
         negative_usage,
         invalid_date,
         invalid_currency,
+        negative_cost,
     ],
     ignore_index=True,
 )
-
 test_df.to_csv(output_path, index=False)
 
 print("Data quality test dataset created.")
